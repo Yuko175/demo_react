@@ -1,5 +1,13 @@
-.App {
+.App-center {
   text-align: center;
+}
+
+.App-left {
+  text-align: left;
+}
+
+.App-bold {
+  font-weight: bold;
 }
 
 .App-logo {

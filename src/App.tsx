@@ -7,8 +7,6 @@ export default function App() {
   return (
     <>
       <Button />
-      <Profile />
-      <button>Hello,World!!</button>
     </>
   );
 }
