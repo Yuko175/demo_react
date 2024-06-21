@@ -7,9 +7,12 @@ export default function Button() {
   const [errorText, setErrorText] = useState<string>("");
   const [resultList, setResultList] = useState<Array<Array<string>>>([[]]);
   const [word, setWord] = useState<string>("");
-  const [url1, setUrl1] = useState<string>("https://ejje.weblio.jp/content/");
-  const [url2, setUrl2] = useState<string>("https://www.ei-navi.jp/dictionary/content/");
-  const [url3, setUrl3] = useState<string>("https://dictionary.goo.ne.jp/word/en/");
+  const URL1 = "https://ejje.weblio.jp/";
+  const URL2 = "https://www.ei-navi.jp/dictionary/";
+  const URL3 = "https://dictionary.goo.ne.jp/";
+  const [url1, setUrl1] = useState<string>(URL1);
+  const [url2, setUrl2] = useState<string>(URL2);
+  const [url3, setUrl3] = useState<string>(URL3);
 
   const handleWordChange = (event) => {
     setWord(event.target.value);
@@ -18,9 +21,9 @@ export default function Button() {
   const handleClearWord = (event) => {
     setWord("");
     setErrorText("");
-    setUrl1("");
-    setUrl2("");
-    setUrl3("");
+    setUrl1(URL1);
+    setUrl2(URL2);
+    setUrl3(URL3);
     setResultList([[]]);
   };
 
@@ -34,9 +37,9 @@ export default function Button() {
       .then((response) => {
         setErrorText("");
         setResultList(response.data);
-        setUrl1("https://ejje.weblio.jp/content/" + word);
-        setUrl2("https://www.ei-navi.jp/dictionary/content/" + word);
-        setUrl3("https://dictionary.goo.ne.jp/word/en/" + word);
+        setUrl1(URL1 + "content/" + word);
+        setUrl2(URL2 + "content/" + word);
+        setUrl3(URL3 + "word/en/" + word);
       })
       .catch((error) => {
         setErrorText("検索結果がありません。別のワードで検索してください。");
