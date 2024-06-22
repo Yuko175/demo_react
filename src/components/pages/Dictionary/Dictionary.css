@@ -1,0 +1,24 @@
+.center {
+  text-align: center;
+}
+
+.textarea {
+  width: calc(50%);
+  height: 150px;
+  resize: vertical;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.grid-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 30%));
+  gap: 20px;
+
+  max-width: 100%;
+  list-style: none;
+
+  & > li {
+    background-color: rgba(234, 88, 88, 0.2);
+  }
+}

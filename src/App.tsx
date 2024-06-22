@@ -1,12 +1,11 @@
-import "./App.css";
 import React from "react";
-import Profile from "./Profile.tsx";
-import Button from "./Button.tsx";
+import { BrowserRouter } from "react-router-dom";
+import { Routing } from "./components/Routing";
 
 export default function App() {
   return (
-    <>
-      <Button />
-    </>
+    <BrowserRouter>
+      <Routing />
+    </BrowserRouter>
   );
 }
