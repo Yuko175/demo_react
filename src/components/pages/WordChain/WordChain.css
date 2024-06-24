@@ -1,0 +1,16 @@
+.center {
+  text-align: center;
+}
+
+.grid-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 45%));
+  gap: 5%;
+
+  max-width: 100%;
+  list-style: none;
+
+  & > li {
+    background-color: rgba(88, 154, 234, 0.2);
+  }
+}
