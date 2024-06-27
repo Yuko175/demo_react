@@ -7,8 +7,8 @@ import userEvent from "@testing-library/user-event";
 
 export default function WordChain() {
   const [JapaneseQuestion, setJapaneseQuestion] = useState<string>("お題");
-  const [hiraganaQuestion, setHiraganaQuestion] = useState<string>("おだい");
-  const [EnglishQuestion, setEnglishQuestion] = useState<string>("theme");
+  const [hiraganaQuestion, setHiraganaQuestion] = useState<string>("りんご");
+  const [EnglishQuestion, setEnglishQuestion] = useState<string>("apple");
   const [JapaneseAnswer, setJapaneseAnswer] = useState<string>("");
   const [EnglishAnswer, setEnglishAnswer] = useState<string>("");
   const [EnglishAnswerList, setEnglishAnswerList] = useState<Array<string>>([]);
@@ -49,7 +49,14 @@ export default function WordChain() {
               setJapaneseAnswerList={setJapaneseAnswerList}
               setEnglishAnswerList={setEnglishAnswerList}
             />
-            <div>{JapaneseAnswerList}</div>
+            {/* <div>{JapaneseAnswerList}</div> */}
+            <div>
+              <ul className="answer-list">
+                {JapaneseAnswerList.map((answer, index) => (
+                  <li key={index}>{answer}</li>
+                ))}
+              </ul>
+            </div>
           </li>
           <li>
             <div>English</div>
@@ -59,7 +66,14 @@ export default function WordChain() {
               setEnglishAnswerList={setEnglishAnswerList}
               setJapaneseAnswerList={setJapaneseAnswerList}
             />
-            <div>{EnglishAnswerList}</div>
+            {/* <div>{EnglishAnswerList}</div> */}
+            <div>
+              <ul className="answer-list">
+                {EnglishAnswerList.map((answer, index) => (
+                  <li key={index}>{answer}</li>
+                ))}
+              </ul>
+            </div>
           </li>
         </ul>
         <br />

@@ -8,27 +8,34 @@ interface EnglishToJapaneseProps {
   setJapaneseAnswerList: React.Dispatch<React.SetStateAction<Array<string>>>;
 }
 
-export default function EnglishToJapanese({ EnglishAnswer, setEnglishAnswer, setEnglishAnswerList, setJapaneseAnswerList }: EnglishToJapaneseProps) {
+export default function EnglishToJapanese({
+  EnglishAnswer,
+  setEnglishAnswer,
+  setEnglishAnswerList,
+  setJapaneseAnswerList,
+}: EnglishToJapaneseProps) {
   const getData = (EnglishAnswer: string) => {
     axios
-      .get("http://localhost:8090/search/" + EnglishAnswer, {
+      .get("http://localhost:8090/search/change/" + EnglishAnswer + "/ej", {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((response) => {
-        setJapaneseAnswerList(["response.data"]);
+        setJapaneseAnswerList(response.data);
         setEnglishAnswerList([EnglishAnswer]);
       })
       .catch((error) => {
-        setJapaneseAnswerList(["い"]);
+        setJapaneseAnswerList(["!エラー!"]);
         setEnglishAnswerList([EnglishAnswer]);
-        //setJapaneseAnswerList([]);
       });
   };
   return (
     <>
-      <input type="text" value={EnglishAnswer} onChange={(e) => setEnglishAnswer(e.target.value)}></input>
+      <input
+        type="text"
+        value={EnglishAnswer}
+        onChange={(e) => setEnglishAnswer(e.target.value)}></input>
       <button onClick={() => getData(EnglishAnswer)}>search</button>
     </>
   );

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 
 interface WordChainSubmitProps {
@@ -52,19 +52,21 @@ export default function WordChainSubmit({
       .catch(() => {});
   };
 
-  const changeHiragana = (JapaneseAnswer: string) => {
-    return new Promise<string>((resolve, reject) => {
+  const changeHiragana = (JapaneseAnswer: string): Promise<Array<string>> => {
+    return new Promise<Array<string>>((resolve, reject) => {
       axios
-        .get("http://localhost:8090/search/" + JapaneseAnswer, {
+        .get("http://localhost:8090/search/hiragana/" + JapaneseAnswer, {
           headers: {
             "Content-Type": "application/json",
           },
         })
         .then((response) => {
-          //resolve("");
+          //TODO:小さい文字を大きな文字に
+          //TODO:カタカナをひらがなに
+          resolve(response.data);
         })
         .catch((error) => {
-          reject("い固定値い");
+          reject();
         });
     });
   };
@@ -90,7 +92,7 @@ export default function WordChainSubmit({
         canSubmit = false;
       }
       //しりとり英語
-      if (EnglishQuestion.slice(-1) === EnglishAnswer.slice(0)) {
+      if (EnglishQuestion.slice(-1) === EnglishAnswer[0]) {
         setJudge2("しりとり英語：成功");
       } else {
         setJudge2("しりとり英語：失敗");
@@ -98,20 +100,20 @@ export default function WordChainSubmit({
       }
       //しりとり日本語
       changeHiragana(JapaneseAnswer)
-        .then(() => {})
-        .catch((result) => {
-          if (hiraganaQuestion.slice(-1) === result[0]) {
+        .then((response) => {
+          if (hiraganaQuestion.slice(-1) === response[0][0]) {
             setJudge3("しりとり日本語：成功");
           } else {
             setJudge3("しりとり日本語：失敗");
             canSubmit = false;
           }
           if (canSubmit) {
-            resolve(result);
+            resolve(response[0]);
           } else {
             reject();
           }
-        });
+        })
+        .catch(() => {});
     });
   };
 

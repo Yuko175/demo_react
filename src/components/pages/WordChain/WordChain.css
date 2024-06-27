@@ -14,3 +14,7 @@
     background-color: rgba(88, 154, 234, 0.2);
   }
 }
+.answer-list {
+  list-style-type: none;
+  padding-left: 0; /* リストの余白を調整（必要に応じて） */
+}
