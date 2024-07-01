@@ -14,16 +14,37 @@ export default function JapaneseToEnglish({
   setJapaneseAnswerList,
   setEnglishAnswerList,
 }: JapaneseToEnglishProps) {
+  const changeHiragana = (JapaneseAnswer: string): Promise<Array<string>> => {
+    return new Promise<Array<string>>((resolve, reject) => {
+      axios
+        .get("http://localhost:8090/search/hiragana/" + JapaneseAnswer, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          //TODO:小さい文字を大きな文字に
+          //TODO:カタカナをひらがなに
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject();
+        });
+    });
+  };
+
   const getData = (JapaneseAnswer: string) => {
     axios
-      .get("http://localhost:8090/search/change/" + JapaneseAnswer + "/je", {
+      .get("http://localhost:8090/search/change/je/" + JapaneseAnswer, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((response) => {
         setEnglishAnswerList(response.data);
-        setJapaneseAnswerList([JapaneseAnswer]);
+        changeHiragana(JapaneseAnswer).then((response) => {
+          setJapaneseAnswerList(response);
+        });
       })
       .catch((error) => {
         setEnglishAnswerList(["!error!"]);

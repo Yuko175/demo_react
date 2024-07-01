@@ -6,9 +6,9 @@ import WordChainSubmit from "../../parts/Button/WordChainSubmit/WordChainSubmit"
 import userEvent from "@testing-library/user-event";
 
 export default function WordChain() {
-  const [JapaneseQuestion, setJapaneseQuestion] = useState<string>("お題");
-  const [hiraganaQuestion, setHiraganaQuestion] = useState<string>("りんご");
-  const [EnglishQuestion, setEnglishQuestion] = useState<string>("apple");
+  const [JapaneseQuestion, setJapaneseQuestion] = useState<string>("");
+  const [hiraganaQuestion, setHiraganaQuestion] = useState<string>("");
+  const [EnglishQuestion, setEnglishQuestion] = useState<string>("");
   const [JapaneseAnswer, setJapaneseAnswer] = useState<string>("");
   const [EnglishAnswer, setEnglishAnswer] = useState<string>("");
   const [EnglishAnswerList, setEnglishAnswerList] = useState<Array<string>>([]);

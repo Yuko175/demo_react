@@ -52,24 +52,24 @@ export default function WordChainSubmit({
       .catch(() => {});
   };
 
-  const changeHiragana = (JapaneseAnswer: string): Promise<Array<string>> => {
-    return new Promise<Array<string>>((resolve, reject) => {
-      axios
-        .get("http://localhost:8090/search/hiragana/" + JapaneseAnswer, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((response) => {
-          //TODO:小さい文字を大きな文字に
-          //TODO:カタカナをひらがなに
-          resolve(response.data);
-        })
-        .catch((error) => {
-          reject();
-        });
-    });
-  };
+  // const changeHiragana = (JapaneseAnswer: string): Promise<Array<string>> => {
+  //   return new Promise<Array<string>>((resolve, reject) => {
+  //     axios
+  //       .get("http://localhost:8090/search/hiragana/" + JapaneseAnswer, {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       })
+  //       .then((response) => {
+  //         //TODO:小さい文字を大きな文字に
+  //         //TODO:カタカナをひらがなに
+  //         resolve(response.data);
+  //       })
+  //       .catch((error) => {
+  //         reject();
+  //       });
+  //   });
+  // };
 
   const canSubmit = (
     JapaneseAnswer: string,
@@ -91,29 +91,29 @@ export default function WordChainSubmit({
         setJudge1("入力と候補：失敗");
         canSubmit = false;
       }
-      //しりとり英語
+      if (EnglishQuestion === "" && hiraganaQuestion === "") {
+        resolve(JapaneseAnswer);
+      }
       if (EnglishQuestion.slice(-1) === EnglishAnswer[0]) {
+        //しりとり英語
         setJudge2("しりとり英語：成功");
       } else {
         setJudge2("しりとり英語：失敗");
         canSubmit = false;
       }
       //しりとり日本語
-      changeHiragana(JapaneseAnswer)
-        .then((response) => {
-          if (hiraganaQuestion.slice(-1) === response[0][0]) {
-            setJudge3("しりとり日本語：成功");
-          } else {
-            setJudge3("しりとり日本語：失敗");
-            canSubmit = false;
-          }
-          if (canSubmit) {
-            resolve(response[0]);
-          } else {
-            reject();
-          }
-        })
-        .catch(() => {});
+      // TODO:0番目の文字を取得しない、どれかであればいい
+      if (hiraganaQuestion.slice(-1) === JapaneseAnswer[0]) {
+        setJudge3("しりとり日本語：成功");
+      } else {
+        setJudge3("しりとり日本語：失敗");
+        canSubmit = false;
+      }
+      if (canSubmit) {
+        resolve(JapaneseAnswer);
+      } else {
+        reject();
+      }
     });
   };
 

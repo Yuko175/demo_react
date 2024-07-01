@@ -16,7 +16,7 @@ export default function EnglishToJapanese({
 }: EnglishToJapaneseProps) {
   const getData = (EnglishAnswer: string) => {
     axios
-      .get("http://localhost:8090/search/change/" + EnglishAnswer + "/ej", {
+      .get("http://localhost:8090/search/change/ej/" + EnglishAnswer, {
         headers: {
           "Content-Type": "application/json",
         },
