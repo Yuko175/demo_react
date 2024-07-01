@@ -36,7 +36,9 @@ export default function WordChain() {
       <div className="center">
         <br />
         <div>
-          {JapaneseQuestion}({hiraganaQuestion})
+          {JapaneseQuestion === hiraganaQuestion
+            ? JapaneseQuestion
+            : JapaneseQuestion + "(" + hiraganaQuestion + ")"}
         </div>
         <div>{EnglishQuestion}</div>
         <br />
@@ -49,7 +51,6 @@ export default function WordChain() {
               setJapaneseAnswerList={setJapaneseAnswerList}
               setEnglishAnswerList={setEnglishAnswerList}
             />
-            {/* <div>{JapaneseAnswerList}</div> */}
             <div>
               <ul className="answer-list">
                 {JapaneseAnswerList.map((answer, index) => (
@@ -66,7 +67,6 @@ export default function WordChain() {
               setEnglishAnswerList={setEnglishAnswerList}
               setJapaneseAnswerList={setJapaneseAnswerList}
             />
-            {/* <div>{EnglishAnswerList}</div> */}
             <div>
               <ul className="answer-list">
                 {EnglishAnswerList.map((answer, index) => (

@@ -91,18 +91,21 @@ export default function WordChainSubmit({
         setJudge1("入力と候補：失敗");
         canSubmit = false;
       }
-      if (EnglishQuestion === "" && hiraganaQuestion === "") {
+      //お題設定用
+      if (EnglishQuestion === "" && hiraganaQuestion === "" && canSubmit) {
         resolve(JapaneseAnswer);
       }
-      if (EnglishQuestion.slice(-1) === EnglishAnswer[0]) {
-        //しりとり英語
+      //しりとり英語
+      if (
+        EnglishQuestion.slice(-1).toUpperCase() === EnglishAnswer[0] ||
+        EnglishQuestion.slice(-1).toLowerCase() === EnglishAnswer[0]
+      ) {
         setJudge2("しりとり英語：成功");
       } else {
         setJudge2("しりとり英語：失敗");
         canSubmit = false;
       }
       //しりとり日本語
-      // TODO:0番目の文字を取得しない、どれかであればいい
       if (hiraganaQuestion.slice(-1) === JapaneseAnswer[0]) {
         setJudge3("しりとり日本語：成功");
       } else {

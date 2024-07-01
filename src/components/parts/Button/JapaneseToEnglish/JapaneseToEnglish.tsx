@@ -41,7 +41,12 @@ export default function JapaneseToEnglish({
         },
       })
       .then((response) => {
-        setEnglishAnswerList(response.data);
+        const originalEnglishAnswerList = response.data;
+        const cleanedEnglishAnswerList = new Array<string>();
+        for (const EnglishAnswer of originalEnglishAnswerList) {
+          cleanedEnglishAnswerList.push(EnglishAnswer.trim());
+        }
+        setEnglishAnswerList(cleanedEnglishAnswerList);
         changeHiragana(JapaneseAnswer).then((response) => {
           setJapaneseAnswerList(response);
         });

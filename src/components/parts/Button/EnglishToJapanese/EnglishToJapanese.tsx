@@ -22,7 +22,12 @@ export default function EnglishToJapanese({
         },
       })
       .then((response) => {
-        setJapaneseAnswerList(response.data);
+        const originalJapaneseAnswerList = response.data;
+        const cleanedJapaneseAnswerList = new Array<string>();
+        for (const JapaneseAnswerList of originalJapaneseAnswerList) {
+          cleanedJapaneseAnswerList.push(JapaneseAnswerList.trim());
+        }
+        setJapaneseAnswerList(cleanedJapaneseAnswerList);
         setEnglishAnswerList([EnglishAnswer]);
       })
       .catch((error) => {
