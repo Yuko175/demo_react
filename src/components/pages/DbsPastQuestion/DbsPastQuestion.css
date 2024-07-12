@@ -1,0 +1,88 @@
+.dbs-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  min-height: 100vh; /* 画面の高さいっぱいに広がるようにする */
+}
+
+.dbs-title {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+}
+
+.dbs-header {
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: #b0e0e6;
+  padding: 10px;
+  z-index: 100;
+}
+.dbs-header-button {
+  float: right;
+  border-color: #dce7e8;
+  background: #dce7e8;
+  /* background: rgba(0, 0, 0, 0); */
+}
+
+.dbs-options {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.dbs-options label {
+  text-align: center;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.dbs-body {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  z-index: 0;
+}
+.dbs-body iframe {
+  width: 95%;
+  height: 600px;
+  margin: 0 auto; /* 中央寄せ */
+  display: block; /* ブロック要素として扱う */
+}
+
+.dbs-footer {
+  text-align: center;
+  position: sticky;
+  bottom: 0;
+  background: #b0e0e6;
+  padding: 10px;
+  z-index: 100;
+}
+
+.dbs-button-marubatu {
+  display: inline-block;
+  width: 45%;
+  height: 30px;
+  font-size: 30px;
+  padding: 0;
+  line-height: 15px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.dbs-button-marubatu-selected {
+  background-color: #57b6b1;
+  color: white;
+}
+
+.dbs-left {
+  float: left;
+  margin-right: 10px;
+}
+.dbs-right {
+  float: right;
+  margin-right: 10px;
+}
