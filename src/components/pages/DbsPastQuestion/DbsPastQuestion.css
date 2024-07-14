@@ -1,14 +1,10 @@
 .dbs-center {
   display: flex;
+  font-size: 15px;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
   min-height: 100vh; /* 画面の高さいっぱいに広がるようにする */
-}
-
-.dbs-title {
-  font-family: Arial, sans-serif;
-  font-size: 20px;
 }
 
 .dbs-header {
@@ -19,8 +15,23 @@
   padding: 10px;
   z-index: 100;
 }
+
+.dbs-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+.dbs-header-title {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #02756f;
+}
+
 .dbs-header-button {
   float: right;
+  font-size: 13px;
   border-color: #dce7e8;
   background: #dce7e8;
   /* background: rgba(0, 0, 0, 0); */
@@ -39,16 +50,56 @@
   margin-bottom: 10px;
 }
 
+.dbs-button-question-count {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  font-size: 15px;
+  padding: 0;
+  line-height: 15px;
+  cursor: pointer;
+  text-align: center;
+}
+.dbs-button-question-count-selected {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  font-size: 15px;
+  padding: 0;
+  line-height: 15px;
+  cursor: pointer;
+  text-align: center;
+  background-color: blue;
+  color: white;
+}
+
 .dbs-body {
   width: 100%;
   max-width: 100%;
-  margin-top: 15px;
+  margin-top: auto; /* 上端に揃える */
   margin-bottom: 15px;
   z-index: 0;
+  flex-grow: 1;
 }
+
+.dbs-body-title {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.dbs-body-accuracy {
+  font-size: 15px;
+}
+
+.dbs-body-results {
+  font-size: 15px;
+}
+
 .dbs-body iframe {
   width: 95%;
-  height: 600px;
+  height: 100vh;
+  /* height: 450px; */
   margin: 0 auto; /* 中央寄せ */
   display: block; /* ブロック要素として扱う */
 }
@@ -74,15 +125,64 @@
 }
 
 .dbs-button-marubatu-selected {
+  display: inline-block;
+  width: 45%;
+  height: 30px;
+  font-size: 30px;
+  padding: 0;
+  line-height: 30px; /* ボタンの高さに合わせる */
+  cursor: pointer;
+  text-align: center;
   background-color: #57b6b1;
   color: white;
+  border: none;
+  border-radius: 0; /* 角丸をなくす */
+  box-shadow: none;
 }
 
 .dbs-left {
   float: left;
   margin-right: 10px;
 }
+
 .dbs-right {
   float: right;
   margin-right: 10px;
+}
+
+.dbs-button {
+  font-size: 15px;
+  height: 30px;
+  padding: 0 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.dbs-back-button {
+  float: left;
+  margin-right: 10px;
+  font-size: 15px;
+  height: 30px;
+  padding: 0 10px;
+  cursor: pointer;
+  text-align: center;
+}
+.dbs-next-button {
+  float: right;
+  margin-right: 10px;
+  font-size: 15px;
+  height: 30px;
+  padding: 0 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.dbs-finish-button {
+  float: center;
+  margin-right: 10px;
+  font-size: 15px;
+  height: 30px;
+  padding: 0 10px;
+  cursor: pointer;
+  text-align: center;
 }
