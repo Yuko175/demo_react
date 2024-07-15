@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./DbsPastQuestion.css";
 
+//TODO:未解答問題からの出題
+//TODO:間違えた問題からの出題
+//TODO:連続正解を除く(2回連続正解のものは出題しない)
+//FIXME:前回の値表示を修正する(本物の値を表示する)
+
+//DBは、年度(複合主キー),問題番号(複合主キー),url,前回の値、前々回の値
+
 // NOTE:範囲名の定数配列
 const OPTION_LIST = [
   "R05",
@@ -136,17 +143,23 @@ export default function DbsPastQuestion() {
   // NOTE:問題URLのリストを作成する関数
   const makeQuestionUrl = async (totalQuestionsCount: number): Promise<string[]> => {
     const questionsList: string[] = [];
+    // TODO:データベースから、前回の値を持ってくる処理
+
+    //*データベースから、年度と問題番号を指定した[totalQuestionsCount(問)]分の行取得する
+    //order by rand()でランダムに取得する
+    //limit totalQuestionsCount
+    //SELECT * FROM テーブル名 ORDER BY RAND() LIMIT totalQuestionsCount;
+    //*questionsListにobjectとして追加する
     while (questionsList.length < totalQuestionsCount) {
       const oneQuestionUrl = await makeOneQuestionUrl();
       if (!questionsList.includes(oneQuestionUrl)) {
         questionsList.push(oneQuestionUrl);
       }
     }
-    // TODO:データベースから、前回の値を持ってくる処理
     return questionsList;
   };
 
-  // NOTE:1つの問題urlの作成
+  // NOTE:1つの問題urlの作成(要らなくなる)
   const makeOneQuestionUrl = (): Promise<string> => {
     return new Promise<string>((resolve) => {
       const random = Math.floor(Math.random() * selectedOptions.length);
