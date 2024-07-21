@@ -118,10 +118,14 @@
   width: 45%;
   height: 30px;
   font-size: 30px;
-  padding: 0;
   line-height: 15px;
+  padding: 0;
   cursor: pointer;
   text-align: center;
+  color: black;
+  border-radius: 0;
+  border: 1px solid black;
+  box-shadow: none;
 }
 
 .dbs-button-marubatu-selected {
@@ -129,13 +133,13 @@
   width: 45%;
   height: 30px;
   font-size: 30px;
+  line-height: 15px;
   padding: 0;
-  line-height: 30px; /* ボタンの高さに合わせる */
   cursor: pointer;
   text-align: center;
   background-color: #57b6b1;
   color: white;
-  border: none;
+  border: 1px solid black;
   border-radius: 0; /* 角丸をなくす */
   box-shadow: none;
 }
